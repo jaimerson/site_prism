@@ -18,6 +18,10 @@ module SitePrism
       end
     end
 
+    def load_url(url)
+      visit url
+    end
+
     def displayed?(seconds = Waiter.default_wait_time)
       raise SitePrism::NoUrlMatcherForPage if url_matcher.nil?
       begin

@@ -24,6 +24,14 @@ describe SitePrism::Page do
     expect(page.url).to be_nil
   end
 
+  it "should allow navigation to arbitrary url" do
+    PageWithoutUrl = Class.new(SitePrism::Page)
+    page = PageWithoutUrl.new
+    path = '/foo/12/edit'
+    expect(page).to receive(:visit).with(path)
+    page.load_url path
+  end
+
   it "should not allow loading if the url hasn't been set" do
     class MyPageWithNoUrl < SitePrism::Page; end
     page_with_no_url = MyPageWithNoUrl.new

@@ -235,6 +235,20 @@ navigate to the URL set against that page's class.
 
 See https://github.com/sporkmonger/addressable for more details on parameterized URLs.
 
+### Navigating to an arbitrary url
+
+The `#load_url` method might be useful when the page under test can be accessed by different urls
+(e.g. new and edit pages using the same form for a given resource).
+
+```
+class PageWithNoUrl < SitePrism::Page
+  # Note that you don't need set_url in this case
+end
+
+@page = PageWithNoUrl.new
+@page.load_url edit_user_path(user_id)
+```
+
 ### Verifying that a particular page is displayed
 
 Automated tests often need to verify that a particular page is
